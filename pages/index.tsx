@@ -26,7 +26,7 @@ export async function getServerSideProps(context: NextPageContext) {
 export default function Home() {
   const { data } = useCurrentUser()
   return (
-    <main className='text-red-600'>
+    <main className='text-white'>
       {/* HOLA
       {JSON.stringify(data)}
       <button onClick={() => signOut()} className='bg-red-500 rounded text-white'>
