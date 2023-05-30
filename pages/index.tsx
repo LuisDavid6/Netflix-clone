@@ -1,5 +1,7 @@
+import Billboard from '@/components/BillBoard'
+import MovieList from '@/components/MovieList'
 import Navbar from '@/components/Navbar'
-import useCurrentUser from '@/hooks/useCurrentUser'
+import useMovieList from '@/hooks/useMovieList'
 import { NextPageContext } from 'next'
 import { getSession, signOut } from 'next-auth/react'
 import { Inter } from 'next/font/google'
@@ -24,15 +26,13 @@ export async function getServerSideProps(context: NextPageContext) {
 }
 
 export default function Home() {
-  const { data } = useCurrentUser()
+  const { data: movies = [] } = useMovieList()
+
   return (
-    <main className='text-white'>
-      {/* HOLA
-      {JSON.stringify(data)}
-      <button onClick={() => signOut()} className='bg-red-500 rounded text-white'>
-        Signout
-      </button> */}
+    <main>
       <Navbar />
+      <Billboard />
+      <MovieList title='Trending Now' data={movies} />
     </main>
   )
 }
