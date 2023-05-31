@@ -4,7 +4,6 @@ import Image from 'next/image'
 import React, { useCallback, useState } from 'react'
 import { getSession, signIn } from 'next-auth/react'
 import { FaGithub, FaGoogle } from 'react-icons/fa'
-import { useRouter } from 'next/router'
 import { NextPageContext } from 'next'
 
 export async function getServerSideProps(context: NextPageContext) {
@@ -25,8 +24,6 @@ export async function getServerSideProps(context: NextPageContext) {
 }
 
 const Auth = () => {
-  const router = useRouter()
-
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
@@ -42,11 +39,8 @@ const Auth = () => {
       await signIn('credentials', {
         email,
         password,
-        redirect: false,
-        callbackUrl: '/',
+        callbackUrl: '/profiles',
       })
-
-      router.push('/profiles')
     } catch (error) {
       console.log(error)
     }
