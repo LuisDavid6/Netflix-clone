@@ -11,27 +11,28 @@ import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
-// export async function getServerSideProps(context: NextPageContext) {
-//   const session = await getSession(context)
+export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context)
 
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: '/auth',
-//         permanent: false,
-//       },
-//     }
-//   }
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/auth',
+        permanent: false,
+      },
+    }
+  }
 
-//   return {
-//     props: {},
-//   }
-// }
+  return {
+    props: {},
+  }
+}
 
 export default function Home() {
   const { data: movies = [] } = useMovieList()
   const { data: favorites = [] } = useFavorites()
   const { isOpen, closeModal } = useInfoModalStore()
+
   return (
     <main>
       <InfoModal visible={isOpen} onClose={closeModal} />
