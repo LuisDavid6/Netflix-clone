@@ -44,11 +44,11 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
         >
           <div className='relative h-96'>
             <video
-              poster={data?.thumbnailUrl}
+              poster={data?.backdropUrl}
               autoPlay
-              muted
               loop
-              src={data?.videoUrl}
+              // src={data?.videoUrl}
+              src='https://res.cloudinary.com/dnc21abpp/video/upload/v1685624869/Netflix/Netflix_Promos_2023_isimzp.mp4'
               className='w-full brightness-[60%] object-cover h-full'
             />
             <div

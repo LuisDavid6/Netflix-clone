@@ -21,7 +21,12 @@ const Watch = () => {
           <span className='font-light'>Watching:</span> {data?.title}
         </p>
       </nav>
-      <video className='h-full w-full' autoPlay controls src={data?.videoUrl}></video>
+      <video
+        className='h-full w-full'
+        autoPlay
+        controls
+        src='https://res.cloudinary.com/dnc21abpp/video/upload/v1685624869/Netflix/Netflix_Promos_2023_isimzp.mp4'
+      ></video>
     </div>
   )
 }

@@ -41,14 +41,14 @@ export const authOptions: AuthOptions = {
         })
 
         if (!user) {
-          throw new Error('Email does not exist')
+          throw new Error('Sorry, we can´t find an account with this email address')
         }
 
         if (user.password) {
           const isCorrectPassword = await compare(credentials.password, user.password)
 
           if (!isCorrectPassword) {
-            throw new Error('Incorrect password')
+            throw new Error('Incorrect user or password')
           }
         }
 

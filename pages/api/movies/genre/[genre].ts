@@ -10,11 +10,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     await serverAuth(req, res)
 
+    const { genre } = req.query
+
+    if (typeof genre !== 'string') {
+      throw new Error('Invalid genre')
+    }
+
+    if (!genre) {
+      throw new Error('Missing genre')
+    }
+
     const movies = await prismadb.movie.findMany({
       where: {
-        NOT: {
-          title: "Elephant's Dream",
-        },
+        genre,
       },
     })
 

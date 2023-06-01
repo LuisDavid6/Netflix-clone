@@ -5,6 +5,7 @@ import React, { useCallback, useState } from 'react'
 import { getSession, signIn } from 'next-auth/react'
 import { FaGithub, FaGoogle } from 'react-icons/fa'
 import { NextPageContext } from 'next'
+import { useRouter } from 'next/router'
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context)
@@ -24,9 +25,12 @@ export async function getServerSideProps(context: NextPageContext) {
 }
 
 const Auth = () => {
+  const router = useRouter()
+
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
+  const [showError, setShowError] = useState({ error: false, message: '' })
 
   const [variant, setVariant] = useState('login')
 
@@ -36,13 +40,17 @@ const Auth = () => {
 
   const login = useCallback(async () => {
     try {
-      await signIn('credentials', {
+      const user = await signIn('credentials', {
         email,
         password,
-        callbackUrl: '/profiles',
+        redirect: false,
+        callbackUrl: '/',
       })
+
+      if (user?.error) setShowError({ error: true, message: user.error })
+      else router.push('/profiles')
     } catch (error) {
-      console.log(error)
+      // console.log(error)
     }
   }, [email, password])
 
@@ -71,6 +79,11 @@ const Auth = () => {
             <h2 className='text-white text-4xl mb-8 font-semibold'>
               {variant === 'login' ? 'Sign in' : 'Register'}
             </h2>
+            {showError.error && (
+              <div className='bg-orange-500 w-full p-2 rounded mb-5'>
+                <h6 className='text-white text-sm ml-4'>{showError.message}</h6>
+              </div>
+            )}
             <div className='flex flex-col gap-4'>
               {variant === 'register' && (
                 <Input
