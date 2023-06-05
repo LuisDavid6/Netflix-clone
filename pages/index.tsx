@@ -34,9 +34,9 @@ export default function Home() {
   const { data: favorites = [] } = useFavorites()
   const { isOpen, closeModal } = useInfoModalStore()
   const { data: action = [] } = useMoviesGenre('action')
-  const { data: adventure = [] } = useMoviesGenre('adventure')
   const { data: animation = [] } = useMoviesGenre('animation')
   const { data: sci_fi = [] } = useMoviesGenre('science fiction')
+  const { data: horror = [] } = useMoviesGenre('horror')
 
   return (
     <main className='pb-12'>
@@ -49,7 +49,7 @@ export default function Home() {
       <MovieList title='Action' data={action.slice(0, 6)} />
       <MovieList title='Animation' data={animation.slice(0, 6)} />
       <MovieList title='Sci-fi' data={sci_fi.slice(0, 6)} />
-      <MovieList title='Adventure' data={adventure.slice(0, 6)} />
+      <MovieList title='Horror' data={horror.slice(0, 6)} />
     </main>
   )
 }
