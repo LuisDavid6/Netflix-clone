@@ -43,13 +43,13 @@ export default function Home() {
       <InfoModal visible={isOpen} onClose={closeModal} />
       <Navbar />
       <Billboard />
-      <MovieList title='Trending Now' data={movies.slice(0, 9)} />
+      <MovieList title='Trending Now' data={movies.slice(5, 11)} />
       <MovieList title='My List' data={favorites} />
-      <MovieList title='Top Rated' data={movies.slice(10, 17)} />
-      <MovieList title='Action' data={action.slice(0, 7)} />
-      <MovieList title='Animation' data={animation.slice(0, 7)} />
-      <MovieList title='Sci-fi' data={sci_fi.slice(0, 7)} />
-      <MovieList title='Adventure' data={adventure.slice(0, 7)} />
+      <MovieList title='Top Rated' data={movies.slice(11, 17)} />
+      <MovieList title='Action' data={action.slice(0, 6)} />
+      <MovieList title='Animation' data={animation.slice(0, 6)} />
+      <MovieList title='Sci-fi' data={sci_fi.slice(0, 6)} />
+      <MovieList title='Adventure' data={adventure.slice(0, 6)} />
     </main>
   )
 }

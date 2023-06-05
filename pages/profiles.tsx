@@ -31,7 +31,7 @@ const Profiles = () => {
       <div className='flex flex-col'>
         <h1 className='text-3xl md:text-6xl text-white text-center'>Who is watching?</h1>
         <div className='flex items-center justify-center gap-3 mt-10'>
-          <ProfileIcon image='/profile-blue.png' name={user.name} />
+          <ProfileIcon image='/profile-blue.png' name={(user && user.name) || ''} />
           <ProfileIcon image='/profile-green.png' name='invitado' />
           <ProfileIcon image='/profile-red.png' name='invitado' />
           <ProfileIcon image='/profile-slate.png' name='invitado' />

@@ -6,17 +6,18 @@ import { MovieInterface } from '@/types'
 import FavoriteButton from './FavoriteButton'
 import useInfoModalStore from '@/hooks/useInfoModalStore'
 
-interface MovieCardProps {
+interface Props {
   data: MovieInterface
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
+const MovieCard: React.FC<Props> = ({ data }) => {
   const router = useRouter()
   const { openModal } = useInfoModalStore()
 
   return (
-    <div className='group bg-zinc-900 col-span relative h-[20vw]'>
+    <div className='group bg-zinc-900 col-span relative h-[20vw] min-w-fit'>
       <img
+        onClick={() => openModal(data?.id)}
         src={data.thumbnailUrl}
         alt='Movie'
         draggable={false}
